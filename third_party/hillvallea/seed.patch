@@ -1,0 +1,15 @@
+--- a/HillVallEA/hillvallea.hpp
++++ b/HillVallEA/hillvallea.hpp
+@@ -69,1 +69,3 @@
+     std::vector<solution_pt> elitist_archive;
++    // Points added to the first sample of a run (used to carry elites across environment changes).
++    std::vector<vec_t> seed_params;
+--- a/HillVallEA/hillvallea.cpp
++++ b/HillVallEA/hillvallea.cpp
+@@ -529,1 +529,6 @@
+     pop->fill_with_rejection(population_size, number_of_parameters, sample_ratio, backup_sols, lower_init_ranges, upper_init_ranges, rng);
++    if (backup_sols.empty()) {
++      for (size_t s = 0; s < seed_params.size(); ++s) {
++        pop->sols.push_back(std::make_shared<solution_t>(seed_params[s]));
++      }
++    }

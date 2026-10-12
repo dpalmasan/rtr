@@ -1,0 +1,8 @@
+data/
+third_party/hillvallea/src/
+*.so
+__pycache__/
+*.egg-info/
+.venv/
+figures/
+artifacts/paper_tables.md
